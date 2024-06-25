@@ -48,6 +48,7 @@ export default function CalendarContainer() {
                     arrivalStartWindow,
                     arrivalEndWindow,
                     id,
+                    scheduledDate
                   }: Action,
                   index: number
                 ) => {
@@ -57,15 +58,16 @@ export default function CalendarContainer() {
                       nameService={name}
                       statusService={status}
                       customer={customer}
-                      scheduledDate={
+                      scheduledStartEndTime={
                         arrivalStartWindow
-                          ? `${arrivalStartWindow}-${arrivalEndWindow}`
+                          ? `${arrivalStartWindow} - ${arrivalEndWindow}`
                           : ""
                       }
                       isLastCard={index === actions.length - 1}
                       onPress={() => handleCardPress(id)}
                       isSelected={selectedCardId === id}
                       key={id}
+                      scheduledDate={scheduledDate}
                     />
                   );
                 }

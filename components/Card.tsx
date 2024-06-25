@@ -7,6 +7,8 @@ const getIcon = {
   Completed: <CheckCircleIcon style={{ color: "#00B47D" }} />,
   Scheduled: <ClockIcon style={{ color: "#00B47D" }} />,
 };
+const daysOfWeekAbbr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 export default function Card({
   nameService,
   statusService,
@@ -16,7 +18,14 @@ export default function Card({
   isLastCard,
   isSelected,
   onPress,
+  scheduledStartEndTime,
 }) {
+  const date = new Date(scheduledDate);
+  const dayOfWeek = date.getDay();
+  const dayOfMonth = date.getDate();
+
+  let dayOfWeekAbbr = daysOfWeekAbbr[dayOfWeek];
+
   const isUnscheduled = statusService == "Unscheduled";
   const { phoneNumber, vendorName } = vendor || {};
   const { street } = customer || {};
@@ -31,9 +40,11 @@ export default function Card({
     >
       <View style={styles.leftContent}>
         <Text style={{ ...styles.text, ...styles.text.day }}>
-          {isUnscheduled ? "TBD" : "WED"}{" "}
+          {isUnscheduled ? "TBD" : dayOfWeekAbbr}
         </Text>
-        <Text style={{ ...styles.text, ...styles.text.number }}>4</Text>
+        <Text style={{ ...styles.text, ...styles.text.number }}>
+          {!isNaN(dayOfMonth) && dayOfMonth}
+        </Text>
         {getIcon[statusService]}
       </View>
       <TouchableOpacity
@@ -73,7 +84,7 @@ export default function Card({
           </View>
           <Text style={styles.text}>
             {!isUnscheduled
-              ? `${statusService} ${scheduledDate}`
+              ? `${statusService} ${scheduledStartEndTime}`
               : "Schedule date & time TBD"}
           </Text>
         </View>
