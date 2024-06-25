@@ -26,15 +26,15 @@ export interface Action {
 
 export interface Vendor {
   id: string;
-  city?: string;
+  city?: string | null;
   emailAddress: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  state?: string;
-  streetAddress?: string;
+  state?: string | null;
+  streetAddress?: string | null;
   vendorName: string;
-  zip?: string;
+  zip?: string | null;
 }
 
 export interface Customer {
