@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
     },
   },
   shadowContainer: {
-    width: "22px", // Ajusta el ancho según tus necesidades
-    height: "11px", // Ajusta la altura según tus necesidades
+    width: 22,
+    height: 11,
   },
   selectedButton: {
     borderWidth: 1,
